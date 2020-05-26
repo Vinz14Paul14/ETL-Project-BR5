@@ -1,10 +1,10 @@
 -- Query ford_stock table
 SELECT * FROM ford_stock
 
--- Query ford_stock table
+-- Query tesla_stock table
 SELECT * FROM tesla_stock
 
--- Query ford_stock table
+-- Query vix_price table
 SELECT * FROM vix_price
 
 -- Join all three tables into one big one
