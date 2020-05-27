@@ -1,0 +1,73 @@
+Project Report
+
+
+At the end of the week, your team will submit a Final Report that describes the following:
+Extract: your original data sources and how the data was formatted (CSV, JSON, pgAdmin 4, etc).
+
+
+Transform: what data cleaning or transformation was required.
+
+
+Load: the final database, tables/collections, and why this was chosen.
+-------------------------------------------------------------------------------------------------------------------------------------
+
+On June 29, 2010, Tesla Motors launched its initial public offering on NASDAQ, the first American car company to do so since the Ford Motor Company had its IPO in 1956.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Analyze Daily Open, High, Low & Close stock market returns of 
+Ford Motor Company, (NYSE:F) & Tesla, Inc. (NASDAQ:TSLA)
+against VIX volatility index prices for the 5yr period after Tesla’s IPO → (6/29/2010 - 6/30/2015) 
+
+
+Datasets
+
+Ford Motor Company (F) NYSE
+Source: Yahoo Finance
+Download CSV for June 29, 2010 to June 29, 2015
+Remove Adj Close** & Volume column
+Rename columns to:
+Date,
+Open_F, 
+High_F, 
+Low_F, 
+Close_F
+Set Date equal to pandas datetime format
+original csv/dataframe format listed date in mm/dd/yyyy
+
+TSLA Historical Data
+Source: Nasdaq
+Download MAX daily historical market prices
+Remove Volume column
+Rearrange column order to mirror Ford table
+Date,
+Open_TSLA, 
+High_TSLA, 
+Low_TSLA, 
+Close_TSLA
+Set Date equal to pandas datetime format
+original csv/dataframe format listed date in mm/dd/yyyy
+
+VIX volatility historical prices
+Source: CBOE via datahub.io
+Download json (541kB)
+Save at the json file. 
+Original csv/dataframe listed the given “date” column in different format than the one we used as standard across all tables
+No change on the column as we wanted this to be the source for our join/inner merge/union with the Ford & Tesla tables collectively.
+
+pgAdmin
+
+Username: postgres
+Password: postgres
+
+-- Query the Ford table (6/29/2010 - 6/29/2015)
+SELECT * FROM ford_stock
+
+-- Query the Tesla table (6/29/2010 - 6/29/2015)
+SELECT * FROM tesla_stock
+
+-- Query the VIX table (6/29/2010 - 6/29/2015)
+SELECT * FROM vix_price
+
+-- Query the Combined table
+SELECT * FROM final_merge
